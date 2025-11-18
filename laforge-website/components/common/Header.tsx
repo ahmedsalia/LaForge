@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaBars, FaTimes, FaInstagram, FaFacebookF, FaTwitter, FaYoutube } from 'react-icons/fa'
+import Logo from './Logo'
 
 const navigation = [
   { name: 'Accueil', href: '/' },
@@ -11,6 +12,7 @@ const navigation = [
   { name: 'Calendrier', href: '/calendrier' },
   { name: 'Actualités', href: '/actualites' },
   { name: 'Galerie', href: '/galerie' },
+  { name: 'Histoire', href: '/histoire' },
   { name: 'Contact', href: '/contact' },
 ]
 
@@ -45,17 +47,9 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="w-12 h-12 bg-gradient-to-br from-[var(--vert-forge)] to-[var(--vert-foret)] rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <span className="text-[var(--platine)] font-bold text-xl">LF</span>
-            </div>
-            <div className="hidden md:block">
-              <div className="text-[var(--platine)] font-bold text-xl tracking-tight">
-                LA FORGE
-              </div>
-              <div className="text-[var(--platine)]/60 text-xs tracking-wider">
-                BASKETBALL
-              </div>
+          <Link href="/" className="flex items-center group">
+            <div className="group-hover:scale-105 transition-transform duration-300">
+              <Logo variant="lettermark" version="2" width={50} height={50} />
             </div>
           </Link>
 
