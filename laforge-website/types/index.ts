@@ -1,5 +1,60 @@
 import { PortableTextBlock } from 'sanity'
 
+export interface Staff {
+  _id: string
+  _createdAt: string
+  name: string
+  slug: { current: string }
+  image?: any
+  role: 'head_coach' | 'assistant_coach' | 'guard_coach' | 'physical_trainer' | 'physiotherapist' | 'video_analyst' | 'manager' | 'general_manager' | 'other'
+  customRole?: string
+  bio?: string
+  experience?: number
+  specialties?: string[]
+  email?: string
+  phone?: string
+  linkedin?: string
+  achievements?: string[]
+}
+
+export interface History {
+  _id: string
+  _createdAt: string
+  title: string
+  slug: { current: string }
+  year?: number
+  mainImage: any
+  excerpt: string
+  content: PortableTextBlock[]
+  category?: 'foundation' | 'milestone' | 'victory' | 'expansion' | 'other'
+  order?: number
+  featured: boolean
+}
+
+export interface SiteSettings {
+  _id: string
+  _createdAt: string
+  title: string
+  description?: string
+  logo: string
+  favicon?: any
+  socialLinks?: {
+    instagram?: string
+    facebook?: string
+    twitter?: string
+    youtube?: string
+  }
+  contact?: {
+    email?: string
+    phone?: string
+    address?: string
+  }
+  heroText?: {
+    tagline?: string
+    description?: string
+  }
+}
+
 export interface Player {
   _id: string
   _createdAt: string
@@ -60,6 +115,36 @@ export interface Match {
   opponentLogo?: any
   highlights?: string
   recap?: string
+  mvp?: {
+    _ref: string
+    _type: 'reference'
+  }
+  xFactor?: {
+    _ref: string
+    _type: 'reference'
+  }
+  teamStats?: {
+    fgPercentage?: number
+    threePointPercentage?: number
+    ftPercentage?: number
+    totalRebounds?: number
+    assists?: number
+    steals?: number
+    blocks?: number
+    turnovers?: number
+  }
+  playerStats?: Array<{
+    _key: string
+    player: {
+      _ref: string
+      _type: 'reference'
+    }
+    points?: number
+    rebounds?: number
+    assists?: number
+    minutesPlayed?: number
+  }>
+  autoGenerateArticle?: boolean
 }
 
 export interface Training {

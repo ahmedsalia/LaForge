@@ -95,6 +95,134 @@ export default defineType({
       rows: 4,
       hidden: ({ document }) => document?.status === 'upcoming',
     }),
+    defineField({
+      name: 'mvp',
+      title: 'MVP du match',
+      type: 'reference',
+      to: [{ type: 'player' }],
+      description: 'Joueur le plus performant du match',
+      hidden: ({ document }) => document?.status !== 'finished',
+    }),
+    defineField({
+      name: 'xFactor',
+      title: 'X-Factor du match',
+      type: 'reference',
+      to: [{ type: 'player' }],
+      description: 'Joueur clé qui a fait la différence',
+      hidden: ({ document }) => document?.status !== 'finished',
+    }),
+    defineField({
+      name: 'teamStats',
+      title: 'Statistiques de l\'équipe',
+      type: 'object',
+      hidden: ({ document }) => document?.status !== 'finished',
+      fields: [
+        {
+          name: 'fgPercentage',
+          title: 'Pourcentage de tirs réussis (%)',
+          type: 'number',
+          validation: (Rule) => Rule.min(0).max(100),
+        },
+        {
+          name: 'threePointPercentage',
+          title: 'Pourcentage de 3 points (%)',
+          type: 'number',
+          validation: (Rule) => Rule.min(0).max(100),
+        },
+        {
+          name: 'ftPercentage',
+          title: 'Pourcentage de lancers francs (%)',
+          type: 'number',
+          validation: (Rule) => Rule.min(0).max(100),
+        },
+        {
+          name: 'totalRebounds',
+          title: 'Rebonds totaux',
+          type: 'number',
+        },
+        {
+          name: 'assists',
+          title: 'Passes décisives',
+          type: 'number',
+        },
+        {
+          name: 'steals',
+          title: 'Interceptions',
+          type: 'number',
+        },
+        {
+          name: 'blocks',
+          title: 'Contres',
+          type: 'number',
+        },
+        {
+          name: 'turnovers',
+          title: 'Pertes de balle',
+          type: 'number',
+        },
+      ],
+    }),
+    defineField({
+      name: 'playerStats',
+      title: 'Statistiques individuelles',
+      type: 'array',
+      hidden: ({ document }) => document?.status !== 'finished',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'player',
+              title: 'Joueur',
+              type: 'reference',
+              to: [{ type: 'player' }],
+            },
+            {
+              name: 'points',
+              title: 'Points',
+              type: 'number',
+            },
+            {
+              name: 'rebounds',
+              title: 'Rebonds',
+              type: 'number',
+            },
+            {
+              name: 'assists',
+              title: 'Passes',
+              type: 'number',
+            },
+            {
+              name: 'minutesPlayed',
+              title: 'Minutes jouées',
+              type: 'number',
+            },
+          ],
+          preview: {
+            select: {
+              player: 'player.name',
+              points: 'points',
+              rebounds: 'rebounds',
+              assists: 'assists',
+            },
+            prepare({ player, points, rebounds, assists }) {
+              return {
+                title: player || 'Joueur',
+                subtitle: `${points || 0} PTS, ${rebounds || 0} REB, ${assists || 0} AST`,
+              }
+            },
+          },
+        },
+      ],
+    }),
+    defineField({
+      name: 'autoGenerateArticle',
+      title: 'Générer automatiquement un article',
+      type: 'boolean',
+      description: 'Cochez cette case pour créer automatiquement un article d\'actualité pour ce match',
+      initialValue: false,
+      hidden: ({ document }) => document?.status !== 'finished',
+    }),
   ],
   preview: {
     select: {

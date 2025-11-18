@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { FaInstagram, FaFacebookF, FaTwitter, FaYoutube, FaMapMarkerAlt, FaEnvelope, FaPhone } from 'react-icons/fa'
+import Logo from './Logo'
 
 const navigation = {
   navigation: [
@@ -12,6 +13,7 @@ const navigation = {
   ressources: [
     { name: 'Actualités', href: '/actualites' },
     { name: 'Galerie', href: '/galerie' },
+    { name: 'Histoire', href: '/histoire' },
     { name: 'Contact', href: '/contact' },
   ],
 }
@@ -30,18 +32,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-[var(--vert-forge)] to-[var(--vert-foret)] rounded-lg flex items-center justify-center">
-                <span className="text-[var(--platine)] font-bold text-xl">LF</span>
-              </div>
-              <div>
-                <div className="text-[var(--platine)] font-bold text-lg tracking-tight">
-                  LA FORGE
-                </div>
-                <div className="text-[var(--platine)]/60 text-xs tracking-wider">
-                  BASKETBALL
-                </div>
-              </div>
+            <div className="flex items-center">
+              <Logo variant="lettermark" version="2" width={60} height={60} />
             </div>
             <p className="text-[var(--blanc-platine)]/60 text-sm">
               Excellence • Passion • Performance
