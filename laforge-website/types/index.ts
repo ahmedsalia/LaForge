@@ -115,6 +115,36 @@ export interface Match {
   opponentLogo?: any
   highlights?: string
   recap?: string
+  mvp?: {
+    _ref: string
+    _type: 'reference'
+  }
+  xFactor?: {
+    _ref: string
+    _type: 'reference'
+  }
+  teamStats?: {
+    fgPercentage?: number
+    threePointPercentage?: number
+    ftPercentage?: number
+    totalRebounds?: number
+    assists?: number
+    steals?: number
+    blocks?: number
+    turnovers?: number
+  }
+  playerStats?: Array<{
+    _key: string
+    player: {
+      _ref: string
+      _type: 'reference'
+    }
+    points?: number
+    rebounds?: number
+    assists?: number
+    minutesPlayed?: number
+  }>
+  autoGenerateArticle?: boolean
 }
 
 export interface Training {
