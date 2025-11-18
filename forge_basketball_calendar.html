@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Forge Basketball - Calendrier Saison 2025-2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --vert-forge: #0F3B2C;
+            --platine: #E5E4E2;
+            --vert-foret: #1B4B3A;
+            --blanc-platine: #F0F0F0;
+            --noir-profond: #0D0D0D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--noir-profond) 0%, var(--vert-forge) 50%, var(--vert-foret) 100%);
+            color: var(--blanc-platine);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Particules Background */
+        .particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.08;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--platine);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-40px) rotate(180deg); opacity: 0.8; }
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 40px 2rem 0;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--blanc-platine), var(--platine));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+            animation: slideInDown 1.2s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+
+        .season-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .season-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--blanc-platine);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        .season-badge:hover {
+            background: var(--platine);
+            color: var(--noir-profond);
+            transform: translateY(-3px);
+        }
+
+        .playoffs-badge {
+            background: linear-gradient(135deg, var(--vert-forge), var(--vert-foret));
+            border: 1px solid var(--platine);
+        }
+
+        /* Stats Dashboard */
+        .stats-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 5rem 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--vert-forge), var(--platine));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-12px);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .stat-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--platine);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover .stat-icon {
+            color: var(--blanc-platine);
+            transform: scale(1.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--blanc-platine);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--blanc-platine);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--vert-forge), var(--platine));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Calendar Filters */
+        .calendar-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--blanc-platine);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--platine);
+            color: var(--noir-profond);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(229, 228, 226, 0.3);
+        }
+
+        /* Schedule Grid */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 5rem;
+        }
+
+        .schedule-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .schedule-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-header {
+            padding: 2.5rem 2rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .schedule-card:hover .card-header::before {
+            left: 100%;
+        }
+
+        .training-header {
+            background: linear-gradient(135deg, var(--vert-forge), var(--vert-foret));
+        }
+
+        .home-match-header {
+            background: linear-gradient(135deg, var(--platine), var(--blanc-platine));
+            color: var(--noir-profond);
+        }
+
+        .away-match-header {
+            background: linear-gradient(135deg, var(--vert-foret), var(--noir-profond));
+        }
+
+        .playoffs-header {
+            background: linear-gradient(135deg, var(--noir-profond), var(--vert-forge), var(--platine));
+        }
+
+        .card-header h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
+            letter-spacing: -0.5px;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .venue-info {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--platine);
+            transition: all 0.3s ease;
+        }
+
+        .venue-info:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateX(5px);
+        }
+
+        .venue-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--platine);
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+        }
+
+        .venue-address {
+            opacity: 0.9;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .time-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            background: var(--vert-forge);
+            color: var(--blanc-platine);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(15, 59, 44, 0.3);
+        }
+
+        .dates-container {
+            max-height: 450px;
+            overflow-y: auto;
+            padding-right: 15px;
+        }
+
+        .dates-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .dates-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .dates-container::-webkit-scrollbar-thumb {
+            background: var(--platine);
+            border-radius: 4px;
+        }
+
+        .dates-container::-webkit-scrollbar-thumb:hover {
+            background: var(--blanc-platine);
+        }
+
+        .date-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.3rem 1.5rem;
+            margin-bottom: 1rem;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            border-left: 4px solid var(--vert-forge);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .date-item:hover {
+            background: var(--vert-forge);
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(15, 59, 44, 0.4);
+        }
+
+        .date-item.holiday {
+            border-left-color: var(--noir-profond);
+            background: rgba(13, 13, 13, 0.2);
+        }
+
+        .date-item.holiday:hover {
+            background: var(--noir-profond);
+        }
+
+        .date-text {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .date-status {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            background: var(--vert-forge);
+            color: var(--blanc-platine);
+            font-weight: 600;
+        }
+
+        .date-status.cancelled {
+            background: var(--noir-profond);
+        }
+
+        .match-status {
+            background: var(--platine);
+            color: var(--noir-profond);
+        }
+
+        .session-summary {
+            background: linear-gradient(135deg, var(--platine), var(--blanc-platine));
+            color: var(--noir-profond);
+            padding: 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            box-shadow: 0 8px 25px rgba(229, 228, 226, 0.3);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 4rem;
+            margin: 6rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.06);
+            padding: 2.5rem;
+            border-radius: 24px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-card:hover {
+            background: var(--vert-forge);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(15, 59, 44, 0.3);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            color: var(--platine);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-title {
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--blanc-platine);
+        }
+
+        .contact-info {
+            opacity: 0.9;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        .footer-motto {
+            text-align: center;
+            padding: 4rem 0;
+            font-style: italic;
+            font-size: 1.5rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--platine), var(--blanc-platine));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+
+        /* Animations */
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .schedule-grid {
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 20px 1rem 0;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .stats-dashboard {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .schedule-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .calendar-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .season-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particules Background -->
+    <div class="particles-bg" id="particles"></div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-title">Calendrier Saison 2025-26</h1>
+            <p class="hero-subtitle">Excellence Semi-Professionnelle • PrepU Canada</p>
+            
+            <div class="season-badges">
+                <div class="season-badge">
+                    <i class="fas fa-calendar-alt"></i>
+                    Période 1 : Sept - Déc 2025
+                </div>
+                <div class="season-badge">
+                    <i class="fas fa-calendar-check"></i>
+                    Période 2 : Jan - Mars 2026
+                </div>
+                <div class="season-badge playoffs-badge">
+                    <i class="fas fa-trophy"></i>
+                    Playoffs : 13-22 Mars
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Dashboard -->
+        <section class="stats-dashboard fade-in">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-dumbbell"></i></div>
+                <div class="stat-number">65</div>
+                <div class="stat-label">Entraînements</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-basketball-ball"></i></div>
+                <div class="stat-number">16</div>
+                <div class="stat-label">Matchs Officiels</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-medal"></i></div>
+                <div class="stat-number">2</div>
+                <div class="stat-label">Périodes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                <div class="stat-number">120h</div>
+                <div class="stat-label">Heures Totales</div>
+            </div>
+        </section>
+
+        <!-- Calendar Section -->
+        <section class="calendar-section fade-in">
+            <div class="section-header">
+                <h2 class="section-title">Planning Complet</h2>
+                <p class="section-subtitle">
+                    Entraînements, matchs officiels et playoffs de notre saison semi-professionnelle
+                </p>
+            </div>
+            
+            <div class="calendar-filters">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-calendar"></i> Tout Voir
+                </button>
+                <button class="filter-btn" data-filter="training">
+                    <i class="fas fa-dumbbell"></i> Entraînements
+                </button>
+                <button class="filter-btn" data-filter="matches">
+                    <i class="fas fa-basketball-ball"></i> Matchs
+                </button>
+                <button class="filter-btn" data-filter="playoffs">
+                    <i class="fas fa-trophy"></i> Playoffs
+                </button>
+            </div>
+
+            <div class="schedule-grid">
+                <!-- PÉRIODE 1 - Entraînements Lundi -->
+                <div class="schedule-card" data-category="training">
+                    <div class="card-header training-header">
+                        <h3><i class="fas fa-dumbbell"></i> P1 - LUNDI ENTRAÎNEMENT</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="venue-info">
+                            <div class="venue-name">Gymnase 4 - Pavillon Durocher</div>
+                            <div class="venue-address">857, rue Riverside, Saint-Lambert</div>
+                        </div>
+                        
+                        <div class="time-badge">
+                            <i class="fas fa-clock"></i>
+                            20h45 - 22h15 (1h30)
+                        </div>
+
+                        <div class="dates-container">
+                            <div class="date-item">
+                                <span class="date-text">22 septembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">29 septembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">6 octobre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">20 octobre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">27 octobre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">3 novembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">10 novembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">17 novembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">24 novembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">1er décembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">8 décembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">15 décembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                        </div>
+
+                        <div class="session-summary">
+                            <i class="fas fa-chart-line"></i>
+                            Total : 12 séances (18 heures)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PÉRIODE 1 - Entraînements Mardi -->
+                <div class="schedule-card" data-category="training">
+                    <div class="card-header training-header">
+                        <h3><i class="fas fa-dumbbell"></i> P1 - MARDI ENTRAÎNEMENT</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="venue-info">
+                            <div class="venue-name">½ Gymnase Double - Pavillon Saint-Lambert</div>
+                            <div class="venue-address">375 Riverside (porte #13 rue Mercille)</div>
+                        </div>
+                        
+                        <div class="time-badge">
+                            <i class="fas fa-clock"></i>
+                            20h45 - 22h15 (1h30)
+                        </div>
+
+                        <div class="dates-container">
+                            <div class="date-item">
+                                <span class="date-text">23 septembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">30 septembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">7 octobre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">14 octobre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">21 octobre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">28 octobre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">4 novembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">11 novembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">18 novembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">25 novembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">2 décembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">9 décembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">16 décembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                        </div>
+
+                        <div class="session-summary">
+                            <i class="fas fa-chart-line"></i>
+                            Total : 13 séances (19h30)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PÉRIODE 1 - Entraînements Jeudi -->
+                <div class="schedule-card" data-category="training">
+                    <div class="card-header training-header">
+                        <h3><i class="fas fa-dumbbell"></i> P1 - JEUDI ENTRAÎNEMENT</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="venue-info">
+                            <div class="venue-name">Gymnase Simple - Pavillon Saint-Lambert</div>
+                            <div class="venue-address">375 Riverside (porte #13 rue Mercille)</div>
+                        </div>
+                        
+                        <div class="time-badge">
+                            <i class="fas fa-clock"></i>
+                            20h45 - 22h45 (2h00)
+                        </div>
+
+                        <div class="dates-container">
+                            <div class="date-item">
+                                <span class="date-text">26 septembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">2 octobre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">9 octobre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">16 octobre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">23 octobre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">30 octobre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">6 novembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">20 novembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">18 décembre</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                        </div>
+
+                        <div class="session-summary">
+                            <i class="fas fa-chart-line"></i>
+                            Total : 9 séances (18 heures)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PÉRIODE 1 - Matchs Domicile -->
+                <div class="schedule-card" data-category="matches">
+                    <div class="card-header home-match-header">
+                        <h3><i class="fas fa-home"></i> P1 - MATCHS DOMICILE</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="venue-info">
+                            <div class="venue-name">Gymnase Simple - Pavillon Saint-Lambert</div>
+                            <div class="venue-address">375 Riverside (porte #13 rue Mercille)</div>
+                        </div>
+
+                        <div class="dates-container">
+                            <div class="date-item">
+                                <span class="date-text">13 novembre</span>
+                                <span class="date-status match-status">vs Overcomers - 20h45</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">27 novembre</span>
+                                <span class="date-status match-status">vs NDG Basketball - 20h45</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">4 décembre</span>
+                                <span class="date-status match-status">vs Sentinels du Nord - 20h45</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">11 décembre</span>
+                                <span class="date-status match-status">vs Alpha - 20h45</span>
+                            </div>
+                        </div>
+
+                        <div class="session-summary">
+                            <i class="fas fa-home"></i>
+                            Total : 4 matchs domicile
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PÉRIODE 1 - Matchs Extérieur -->
+                <div class="schedule-card" data-category="matches">
+                    <div class="card-header away-match-header">
+                        <h3><i class="fas fa-plane"></i> P1 - MATCHS EXTÉRIEUR</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="venue-info">
+                            <div class="venue-name">Déplacements Officiels</div>
+                            <div class="venue-address">Terrains adverses - PrepU Canada</div>
+                        </div>
+
+                        <div class="dates-container">
+                            <div class="date-item">
+                                <span class="date-text">25 octobre</span>
+                                <span class="date-status match-status">@ Maestro - 15h00</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">22 novembre</span>
+                                <span class="date-status match-status">@ Patriotes - 19h00</span>
+                            </div>
+                        </div>
+
+                        <div class="session-summary">
+                            <i class="fas fa-plane"></i>
+                            Total : 2 matchs extérieur
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PÉRIODE 2 - Entraînements Dimanche -->
+                <div class="schedule-card" data-category="training">
+                    <div class="card-header training-header">
+                        <h3><i class="fas fa-dumbbell"></i> P2 - DIMANCHE ENTRAÎNEMENT</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="venue-info">
+                            <div class="venue-name">Gymnase 4 - Pavillon Durocher</div>
+                            <div class="venue-address">857, rue Riverside, Saint-Lambert</div>
+                        </div>
+                        
+                        <div class="time-badge">
+                            <i class="fas fa-clock"></i>
+                            20h45 - 22h15 (1h30)
+                        </div>
+
+                        <div class="dates-container">
+                            <div class="date-item">
+                                <span class="date-text">5 janvier</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">12 janvier</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">19 janvier</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">26 janvier</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">2 février</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">9 février</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">16 février</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">23 février</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">2 mars</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">9 mars</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">16 mars</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                        </div>
+
+                        <div class="session-summary">
+                            <i class="fas fa-chart-line"></i>
+                            Total : 11 séances (16h30)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PÉRIODE 2 - Entraînements Lundi -->
+                <div class="schedule-card" data-category="training">
+                    <div class="card-header training-header">
+                        <h3><i class="fas fa-dumbbell"></i> P2 - LUNDI ENTRAÎNEMENT</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="venue-info">
+                            <div class="venue-name">½ Gymnase Double - Pavillon Saint-Lambert</div>
+                            <div class="venue-address">375 Riverside (porte #13 rue Mercille)</div>
+                        </div>
+                        
+                        <div class="time-badge">
+                            <i class="fas fa-clock"></i>
+                            20h45 - 22h15 (1h30)
+                        </div>
+
+                        <div class="dates-container">
+                            <div class="date-item">
+                                <span class="date-text">6 janvier</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">13 janvier</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">20 janvier</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">27 janvier</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">3 février</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">10 février</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">17 février</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">24 février</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">3 mars</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">10 mars</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">17 mars</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                        </div>
+
+                        <div class="session-summary">
+                            <i class="fas fa-chart-line"></i>
+                            Total : 12 séances (18 heures)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PÉRIODE 2 - Entraînements Mercredi -->
+                <div class="schedule-card" data-category="training">
+                    <div class="card-header training-header">
+                        <h3><i class="fas fa-dumbbell"></i> P2 - MERCREDI ENTRAÎNEMENT</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="venue-info">
+                            <div class="venue-name">Gymnase Simple - Pavillon Saint-Lambert</div>
+                            <div class="venue-address">375 Riverside (porte #13 rue Mercille)</div>
+                        </div>
+                        
+                        <div class="time-badge">
+                            <i class="fas fa-clock"></i>
+                            20h45 - 22h45 (2h00)
+                        </div>
+
+                        <div class="dates-container">
+                            <div class="date-item">
+                                <span class="date-text">8 janvier</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">15 janvier</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">22 janvier</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">29 janvier</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">5 février</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">12 février</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">19 février</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">26 février</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">5 mars</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">12 mars</span>
+                                <span class="date-status">Confirmé</span>
+                            </div>
+                        </div>
+
+                        <div class="session-summary">
+                            <i class="fas fa-chart-line"></i>
+                            Total : 10 séances (20 heures)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PÉRIODE 2 - Matchs Domicile -->
+                <div class="schedule-card" data-category="matches">
+                    <div class="card-header home-match-header">
+                        <h3><i class="fas fa-home"></i> P2 - MATCHS DOMICILE</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="venue-info">
+                            <div class="venue-name">Gymnase Simple - Pavillon Saint-Lambert</div>
+                            <div class="venue-address">375 Riverside (porte #13 rue Mercille)</div>
+                        </div>
+
+                        <div class="dates-container">
+                            <div class="date-item">
+                                <span class="date-text">29 janvier</span>
+                                <span class="date-status match-status">vs Hoop Canada - 20h45</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">5 février</span>
+                                <span class="date-status match-status">vs Requins - 20h45</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">12 février</span>
+                                <span class="date-status match-status">vs Les Patriotes - 20h45</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">6 mars</span>
+                                <span class="date-status match-status">vs Maestro - 20h45</span>
+                            </div>
+                        </div>
+
+                        <div class="session-summary">
+                            <i class="fas fa-home"></i>
+                            Total : 4 matchs domicile
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PÉRIODE 2 - Matchs Extérieur -->
+                <div class="schedule-card" data-category="matches">
+                    <div class="card-header away-match-header">
+                        <h3><i class="fas fa-plane"></i> P2 - MATCHS EXTÉRIEUR</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="venue-info">
+                            <div class="venue-name">Déplacements Période 2</div>
+                            <div class="venue-address">Janvier - Mars 2026</div>
+                        </div>
+
+                        <div class="dates-container">
+                            <div class="date-item">
+                                <span class="date-text">16 janvier</span>
+                                <span class="date-status match-status">@ CD Academy - 20h15</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">24 janvier</span>
+                                <span class="date-status match-status">@ NDG Basketball - 19h30</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">4 février</span>
+                                <span class="date-status match-status">@ Overcomers - 20h15</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">8 février</span>
+                                <span class="date-status match-status">@ Alpha - 16h00</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">28 février</span>
+                                <span class="date-status match-status">@ Sentinels du Nord</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">7 mars</span>
+                                <span class="date-status match-status">@ Helissis</span>
+                            </div>
+                        </div>
+
+                        <div class="session-summary">
+                            <i class="fas fa-plane"></i>
+                            Total : 6 matchs extérieur
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PLAYOFFS -->
+                <div class="schedule-card" data-category="playoffs">
+                    <div class="card-header playoffs-header">
+                        <h3><i class="fas fa-trophy"></i> PLAYOFFS PREPÜ CANADA</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="venue-info">
+                            <div class="venue-name">Phase Finale - Top 4 Équipes</div>
+                            <div class="venue-address">Lieux déterminés selon classements</div>
+                        </div>
+                        
+                        <div class="time-badge" style="background: linear-gradient(135deg, var(--platine), var(--blanc-platine)); color: var(--noir-profond);">
+                            <i class="fas fa-medal"></i>
+                            13 - 22 mars 2026
+                        </div>
+
+                        <div class="dates-container">
+                            <div class="date-item">
+                                <span class="date-text">Demi-finales</span>
+                                <span class="date-status" style="background: var(--platine); color: var(--noir-profond);">13-15 mars</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-text">Finales</span>
+                                <span class="date-status" style="background: var(--platine); color: var(--noir-profond);">20-22 mars</span>
+                            </div>
+                        </div>
+
+                        <div class="session-summary">
+                            <i class="fas fa-trophy"></i>
+                            Qualification selon saison régulière
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section fade-in">
+            <div class="section-header">
+                <h2 class="section-title">Informations Officielles</h2>
+                <p class="section-subtitle">
+                    Coordonnées et partenaires de La Forge Basketball
+                </p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="contact-title">Email Officiel</div>
+                    <div class="contact-info">laforgebasketball@gmail.com</div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-user-tie"></i></div>
+                    <div class="contact-title">Coach Principal</div>
+                    <div class="contact-info">
+                        Ahmed Salia Touré<br>
+                        (514) 999-2550
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-building"></i></div>
+                    <div class="contact-title">Partenaire Officiel</div>
+                    <div class="contact-info">
+                        Collège Durocher Saint-Lambert<br>
+                        Contrat signé - 10 septembre 2025
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <div class="footer-motto">
+            "Forgeons ensemble l'excellence sur et en dehors du terrain - La Forge Basketball, fière représentante de Montréal dans la ligue PrepU Canada."
+        </div>
+    </div>
+
+    <script>
+        // Création des particules améliorées
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 5 + 2;
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 8 + 8;
+                const delay = Math.random() * 5;
+
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${left}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDuration = `${animationDuration}s`;
+                particle.style.animationDelay = `${delay}s`;
+
+                container.appendChild(particle);
+            }
+        }
+
+        // Filtres du calendrier
+        function initCalendarFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const scheduleCards = document.querySelectorAll('.schedule-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filter = btn.getAttribute('data-filter');
+                    
+                    scheduleCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+                        
+                        if (filter === 'all' || filter === category) {
+                            card.style.display = 'block';
+                            card.style.animation = 'fadeInUp 0.8s ease forwards';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+
+        // Animation des compteurs
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const finalValue = target.textContent;
+                        
+                        if (!isNaN(finalValue)) {
+                            let currentValue = 0;
+                            const increment = finalValue / 60;
+                            const timer = setInterval(() => {
+                                currentValue += increment;
+                                if (currentValue >= finalValue) {
+                                    currentValue = finalValue;
+                                    clearInterval(timer);
+                                }
+                                target.textContent = Math.floor(currentValue);
+                            }, 40);
+                        }
+                        observer.unobserve(target);
+                    }
+                });
+            });
+
+            counters.forEach(counter => observer.observe(counter));
+        }
+
+        // Scroll reveal amélioré
+        function initScrollReveal() {
+            const elements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeInUp 1s ease forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            elements.forEach(el => observer.observe(el));
+        }
+
+        // Effets 3D pour les cards
+        function initCardEffects() {
+            const cards = document.querySelectorAll('.schedule-card, .stat-card, .contact-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 15;
+                    const rotateY = (centerX - x) / 15;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+                });
+            });
+        }
+
+        // Initialisation complète
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            initCalendarFilters();
+            animateCounters();
+            initScrollReveal();
+            initCardEffects();
+        });
+
+        // Optimisation performance
+        let ticking = false;
+        function updateOnScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    initScrollReveal();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', updateOnScroll, { passive: true });
+    </script>
+</body>
+</html>

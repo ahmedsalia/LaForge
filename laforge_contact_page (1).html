@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - La Forge Basketball | Montréal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --vert-forge: #0F3B2C;
+            --platine: #E5E4E2;
+            --vert-foret: #1B4B3A;
+            --blanc-platine: #F0F0F0;
+            --noir-profond: #0D0D0D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--noir-profond) 0%, var(--vert-forge) 100%);
+            color: var(--blanc-platine);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* PARTICULES BACKGROUND */
+        .particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--platine);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* HEADER PREMIUM */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(15, 59, 44, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(229, 228, 226, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(15, 59, 44, 0.98);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80px;
+        }
+
+        .logo-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-placeholder:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            font-weight: 900;
+            font-size: 1.4rem;
+            color: var(--blanc-platine);
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .logo-subtitle {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--platine);
+            letter-spacing: 2px;
+            margin-top: 2px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 120px 2rem 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(229, 228, 226, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--blanc-platine), var(--platine));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInTop 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+
+        /* CONTACT CONTAINER */
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 6rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        /* FORMULAIRE DE CONTACT */
+        .contact-form-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 3rem;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: slideInLeft 1s ease-out 0.6s both;
+        }
+
+        .contact-form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--platine), var(--blanc-platine));
+            transform: scaleX(0);
+            transition: transform 0.8s ease;
+        }
+
+        .contact-form-section:hover::before {
+            transform: scaleX(1);
+        }
+
+        .form-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--blanc-platine);
+        }
+
+        .form-subtitle {
+            font-size: 1rem;
+            opacity: 0.7;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--platine);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--blanc-platine);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--platine);
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(229, 228, 226, 0.2);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: rgba(240, 240, 240, 0.5);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            background: linear-gradient(135deg, var(--platine), var(--blanc-platine));
+            color: var(--noir-profond);
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(229, 228, 226, 0.4);
+        }
+
+        /* INFORMATIONS DE CONTACT */
+        .contact-info-section {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            animation: slideInRight 1s ease-out 0.6s both;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: radial-gradient(circle at center, rgba(229, 228, 226, 0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .info-card:hover::after {
+            opacity: 1;
+        }
+
+        .info-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(229, 228, 226, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--platine), var(--blanc-platine));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--noir-profond);
+            font-weight: 700;
+        }
+
+        .info-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--blanc-platine);
+        }
+
+        .info-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(8px);
+        }
+
+        .info-item i {
+            color: var(--platine);
+            width: 20px;
+        }
+
+        .info-item a {
+            color: var(--blanc-platine);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-item a:hover {
+            color: var(--platine);
+        }
+
+        /* SECTION INSTAGRAM */
+        .instagram-section {
+            grid-column: 1 / -1;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 3rem;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 1s ease-out 0.9s both;
+        }
+
+        .instagram-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(229, 228, 226, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .instagram-section:hover::before {
+            opacity: 1;
+        }
+
+        .instagram-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .instagram-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .instagram-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #E4405F, #833AB4, #C13584);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 8px 25px rgba(196, 53, 132, 0.3);
+        }
+
+        .instagram-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(196, 53, 132, 0.5);
+        }
+
+        .instagram-btn i {
+            font-size: 1.3rem;
+        }
+
+        /* SECTION CARTES */
+        .maps-section {
+            grid-column: 1 / -1;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 3rem;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 1s ease-out 1.2s both;
+        }
+
+        .maps-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .maps-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .maps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .map-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--platine), var(--blanc-platine));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .map-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .map-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(229, 228, 226, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .map-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .map-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--platine), var(--blanc-platine));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--noir-profond);
+            font-weight: 700;
+        }
+
+        .map-info {
+            flex: 1;
+        }
+
+        .map-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--blanc-platine);
+            margin-bottom: 0.3rem;
+        }
+
+        .map-address {
+            color: var(--platine);
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .map-schedule {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .map-container {
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .map-actions {
+            text-align: center;
+        }
+
+        .directions-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, var(--vert-forge), var(--vert-foret));
+            color: var(--blanc-platine);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(15, 59, 44, 0.3);
+        }
+
+        .directions-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(15, 59, 44, 0.5);
+            background: linear-gradient(135deg, var(--vert-foret), var(--vert-forge));
+        }
+
+        /* LOCALISATION */
+        .location-info {
+            background: linear-gradient(135deg, var(--vert-forge), var(--vert-foret));
+        }
+
+        .location-info .info-icon {
+            background: linear-gradient(135deg, var(--platine), var(--blanc-platine));
+        }
+
+        /* ANIMATIONS */
+        @keyframes slideInTop {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 968px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero {
+                padding: 100px 1rem 60px;
+            }
+
+            .contact-form-section,
+            .info-card,
+            .instagram-section,
+            .maps-section {
+                padding: 2rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .form-title {
+                font-size: 1.5rem;
+            }
+
+            .maps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-container {
+                padding: 0 1rem 4rem;
+            }
+
+            .contact-form-section,
+            .info-card,
+            .instagram-section,
+            .maps-section {
+                padding: 1.5rem;
+            }
+
+            .info-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            .instagram-btn {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+
+            .map-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+
+            .maps-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* SCROLL REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- PARTICULES BACKGROUND -->
+    <div class="particles-bg" id="particles"></div>
+
+    <!-- HEADER PREMIUM -->
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <div class="logo-placeholder">
+                <span class="logo-text">LA FORGE</span>
+                <span class="logo-subtitle">BASKETBALL</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Contactez-nous</h1>
+            <p class="hero-subtitle">
+                Prêt à rejoindre l'excellence ? Notre équipe est là pour répondre à toutes vos questions 
+                sur La Forge Basketball et nos programmes d'élite.
+            </p>
+        </div>
+    </section>
+
+    <!-- CONTACT CONTAINER -->
+    <div class="contact-container">
+        <!-- FORMULAIRE DE CONTACT -->
+        <div class="contact-form-section">
+            <h2 class="form-title">Envoyez-nous un message</h2>
+            <p class="form-subtitle">
+                Que vous soyez un joueur, parent, partenaire ou fan, nous sommes à votre écoute.
+            </p>
+
+            <!-- 
+            CONFIGURATION FORMSPREE :
+            1. Allez sur https://formspree.io/
+            2. Créez un compte gratuit
+            3. Créez un nouveau formulaire avec votre email : laforgebasketball@gmail.com
+            4. Remplacez "YOUR_FORM_ID" ci-dessous par votre ID Formspree
+            5. Le formulaire enverra automatiquement les messages à votre email !
+            -->
+            <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-group">
+                    <label for="name" class="form-label">Nom complet *</label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        class="form-input" 
+                        placeholder="Votre nom et prénom"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Email *</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-input" 
+                        placeholder="votre.email@exemple.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" class="form-label">Téléphone</label>
+                    <input 
+                        type="tel" 
+                        id="phone" 
+                        name="phone" 
+                        class="form-input" 
+                        placeholder="(514) 999-0000"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="subject" class="form-label">Sujet *</label>
+                    <select id="subject" name="subject" class="form-select" required>
+                        <option value="">Choisissez un sujet</option>
+                        <option value="recrutement">Recrutement joueur</option>
+                        <option value="tryouts">Informations tryouts</option>
+                        <option value="partenariat">Partenariat / Sponsoring</option>
+                        <option value="media">Demande média</option>
+                        <option value="general">Question générale</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="form-label">Message *</label>
+                    <textarea 
+                        id="message" 
+                        name="message" 
+                        class="form-textarea" 
+                        placeholder="Décrivez votre demande ou question..."
+                        required
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    Envoyer le message
+                </button>
+            </form>
+        </div>
+
+        <!-- INFORMATIONS DE CONTACT -->
+        <div class="contact-info-section">
+            <!-- COORDONNÉES GÉNÉRALES -->
+            <div class="info-card">
+                <div class="info-header">
+                    <div class="info-icon">
+                        <i class="fas fa-address-book"></i>
+                    </div>
+                    <h3 class="info-title">Coordonnées officielles</h3>
+                </div>
+                <div class="info-content">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:laforgebasketball@gmail.com">laforgebasketball@gmail.com</a>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:5149992550">(514) 999-2550</a>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Montréal, Quebec, Canada</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-user-tie"></i>
+                        <span><strong>Coach Principal:</strong> Ahmed Salia Touré</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LOCALISATION -->
+            <div class="info-card location-info">
+                <div class="info-header">
+                    <div class="info-icon">
+                        <i class="fas fa-map-pin"></i>
+                    </div>
+                    <h3 class="info-title">Installations d'entraînement</h3>
+                </div>
+                <div class="info-content">
+                    <div class="info-item">
+                        <i class="fas fa-building"></i>
+                        <span><strong>Collège Durocher Saint-Lambert</strong></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Pavillon Durocher - 857 rue Riverside</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-pin"></i>
+                        <span>Pavillon Saint-Lambert - 375 Riverside</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Lun/Mar 20h45-22h15, Jeu 20h45-22h45</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-trophy"></i>
+                        <span>Niveau: PrepU Canada</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HORAIRES -->
+            <div class="info-card">
+                <div class="info-header">
+                    <div class="info-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="info-title">Disponibilité</h3>
+                </div>
+                <div class="info-content">
+                    <div class="info-item">
+                        <i class="fas fa-business-time"></i>
+                        <span><strong>Bureaux:</strong> Lun-Ven 9h-17h</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-dumbbell"></i>
+                        <span><strong>Entraînements:</strong> Lun/Mar 20h45-22h15, Jeu 20h45-22h45</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-gamepad"></i>
+                        <span><strong>Matchs:</strong> Weekends selon calendrier</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone-volume"></i>
+                        <span><strong>Urgences:</strong> 24h/7j</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION INSTAGRAM -->
+        <div class="instagram-section">
+            <h2 class="instagram-title">Suivez-nous sur Instagram</h2>
+            <p class="instagram-subtitle">
+                Découvrez les coulisses, les entraînements, les matchs et la vie de notre équipe d'élite sur notre compte officiel.
+            </p>
+            <a 
+                href="https://www.instagram.com/laforge.basketball?igsh=dndpNDg4ZmcwZTdi" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="instagram-btn"
+            >
+                <i class="fab fa-instagram"></i>
+                @laforge.basketball
+            </a>
+        </div>
+
+        <!-- SECTION LOCALISATION -->
+        <div class="maps-section">
+            <h2 class="maps-title">Nos Installations</h2>
+            <p class="maps-subtitle">
+                Découvrez l'emplacement de nos deux pavillons d'entraînement au Collège Durocher Saint-Lambert
+            </p>
+            
+            <div class="maps-grid">
+                <!-- Pavillon Durocher -->
+                <div class="map-card">
+                    <div class="map-header">
+                        <div class="map-icon">
+                            <i class="fas fa-basketball-ball"></i>
+                        </div>
+                        <div class="map-info">
+                            <h3 class="map-title">Pavillon Durocher</h3>
+                            <p class="map-address">857 Rue Riverside, Saint-Lambert</p>
+                            <p class="map-schedule">Lundi 20h45-22h15</p>
+                        </div>
+                    </div>
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2801.8!2d-73.515!3d45.499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91a5f8b1a4d3b%3A0x1f8b4a4d3b1a5f8c!2s857%20Rue%20Riverside%2C%20Saint-Lambert%2C%20QC%20J4P%201C2!5e0!3m2!1sfr!2sca!4v1640995200000!5m2!1sfr!2sca"
+                            width="100%" 
+                            height="250" 
+                            style="border:0; border-radius: 12px;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <div class="map-actions">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=857+Rue+Riverside,+Saint-Lambert,+QC+J4P+1C2" 
+                           target="_blank" 
+                           class="directions-btn">
+                            <i class="fas fa-directions"></i>
+                            Obtenir directions
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Pavillon Saint-Lambert -->
+                <div class="map-card">
+                    <div class="map-header">
+                        <div class="map-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="map-info">
+                            <h3 class="map-title">Pavillon Saint-Lambert</h3>
+                            <p class="map-address">375 Rue Riverside, Saint-Lambert</p>
+                            <p class="map-schedule">Mardi 20h45-22h15, Jeudi 20h45-22h45</p>
+                        </div>
+                    </div>
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2801.8!2d-73.515!3d45.499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91a5f8b1a4d3b%3A0x1f8b4a4d3b1a5f8d!2s375%20Rue%20Riverside%2C%20Saint-Lambert%2C%20QC%20J4P%201C2!5e0!3m2!1sfr!2sca!4v1640995200000!5m2!1sfr!2sca"
+                            width="100%" 
+                            height="250" 
+                            style="border:0; border-radius: 12px;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <div class="map-actions">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=375+Rue+Riverside,+Saint-Lambert,+QC+J4P+1C2" 
+                           target="_blank" 
+                           class="directions-btn">
+                            <i class="fas fa-directions"></i>
+                            Obtenir directions
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // HEADER SCROLL EFFECT
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // PARTICULES GÉNÉRATIVES
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 4 + 1;
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 4 + 4;
+                const delay = Math.random() * 2;
+
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${left}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDuration = `${animationDuration}s`;
+                particle.style.animationDelay = `${delay}s`;
+
+                container.appendChild(particle);
+            }
+        }
+
+        // FORMULAIRE FORMSPREE INTEGRATION
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            const form = e.target;
+            
+            // Animation d'envoi
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+            submitBtn.style.background = 'linear-gradient(135deg, var(--vert-forge), var(--vert-foret))';
+            submitBtn.disabled = true;
+            
+            try {
+                // Envoi via Formspree
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Succès
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Message envoyé avec succès !';
+                    submitBtn.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+                    
+                    // Notification de succès
+                    showNotification('Message envoyé ! Nous vous répondrons sous 24h.', 'success');
+                    
+                    // Reset après 3 secondes
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = 'linear-gradient(135deg, var(--platine), var(--blanc-platine))';
+                        submitBtn.disabled = false;
+                        form.reset();
+                    }, 3000);
+                } else {
+                    throw new Error('Erreur réseau');
+                }
+            } catch (error) {
+                // Erreur
+                submitBtn.innerHTML = '<i class="fas fa-times"></i> Erreur - Réessayez';
+                submitBtn.style.background = 'linear-gradient(135deg, #dc3545, #c82333)';
+                
+                showNotification('Erreur lors de l\'envoi. Contactez-nous directement.', 'error');
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = 'linear-gradient(135deg, var(--platine), var(--blanc-platine))';
+                    submitBtn.disabled = false;
+                }, 3000);
+            }
+        });
+
+        // NOTIFICATION SYSTEM
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                ${message}
+            `;
+            
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 2rem;
+                background: ${type === 'success' ? 'linear-gradient(135deg, #28a745, #20c997)' : 'linear-gradient(135deg, #dc3545, #c82333)'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 12px;
+                font-weight: 600;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+                z-index: 10000;
+                backdrop-filter: blur(10px);
+                transform: translateX(100%);
+                transition: transform 0.4s ease;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animation d'entrée
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Auto-remove après 5 secondes
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 400);
+            }, 5000);
+        }
+
+        // ENHANCED INPUT EFFECTS
+        document.querySelectorAll('.form-input, .form-textarea, .form-select').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+
+        // CARDS HOVER EFFECT 3D
+        document.querySelectorAll('.info-card, .contact-form-section, .instagram-section').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+            });
+        });
+
+        // SCROLL REVEAL ANIMATION
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('revealed');
+                }
+            });
+        }
+
+        // PHONE NUMBER FORMATTING
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 3) {
+                value = value.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+            }
+            e.target.value = value;
+        });
+
+        // SMOOTH SCROLL POUR LIENS INTERNES
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // FORM VALIDATION VISUAL FEEDBACK
+        document.querySelectorAll('input[required], textarea[required], select[required]').forEach(field => {
+            field.addEventListener('blur', function() {
+                if (this.value.trim() === '') {
+                    this.style.borderColor = '#ff6b6b';
+                    this.style.background = 'rgba(255, 107, 107, 0.1)';
+                } else {
+                    this.style.borderColor = 'var(--platine)';
+                    this.style.background = 'rgba(229, 228, 226, 0.1)';
+                }
+            });
+        });
+
+        // EMAIL VALIDATION
+        document.getElementById('email').addEventListener('blur', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(this.value) && this.value !== '') {
+                this.style.borderColor = '#ff6b6b';
+                this.style.background = 'rgba(255, 107, 107, 0.1)';
+            }
+        });
+
+        // INITIALISATION
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            revealOnScroll();
+            
+            // Auto-focus sur le premier champ après un délai
+            setTimeout(() => {
+                document.getElementById('name').focus();
+            }, 1000);
+        });
+
+        window.addEventListener('scroll', revealOnScroll);
+
+        // PERFORMANCE OPTIMIZATION
+        let ticking = false;
+        function updateOnScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    revealOnScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', updateOnScroll, { passive: true });
+    </script>
+</body>
+</html>

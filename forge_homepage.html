@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Forge Basketball - Montréal | Excellence Semi-Professionnelle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --vert-forge: #0F3B2C;
+            --platine: #E5E4E2;
+            --vert-foret: #1B4B3A;
+            --blanc-platine: #F0F0F0;
+            --noir-profond: #0D0D0D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--noir-profond) 0%, var(--vert-forge) 100%);
+            color: var(--blanc-platine);
+            overflow-x: hidden;
+        }
+
+        /* PARTICULES BACKGROUND */
+        .particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--platine);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* HEADER PREMIUM */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(15, 59, 44, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(229, 228, 226, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(15, 59, 44, 0.98);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80px;
+        }
+
+        .logo-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-placeholder:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            font-weight: 900;
+            font-size: 1.4rem;
+            color: var(--blanc-platine);
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .logo-subtitle {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--platine);
+            letter-spacing: 2px;
+            margin-top: 2px;
+        }
+
+        /* HERO SECTION SPECTACULAIRE */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(15, 59, 44, 0.9) 0%, 
+                rgba(27, 75, 58, 0.8) 50%,
+                rgba(13, 13, 13, 0.95) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-logo {
+            margin-bottom: 2rem;
+            animation: slideInTop 1s ease-out;
+        }
+
+        .hero-logo .logo-text {
+            font-size: clamp(3rem, 8vw, 6rem);
+            background: linear-gradient(135deg, var(--blanc-platine), var(--platine));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-logo .logo-subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            margin-top: 0.5rem;
+        }
+
+        .hero-tagline {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 300;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            animation: slideInLeft 1s ease-out 0.3s both;
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            line-height: 1.6;
+            animation: slideInRight 1s ease-out 0.6s both;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease-out 0.9s both;
+        }
+
+        .hero-btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-btn-primary {
+            background: linear-gradient(135deg, var(--platine), var(--blanc-platine));
+            color: var(--noir-profond);
+            box-shadow: 0 8px 25px rgba(229, 228, 226, 0.4);
+        }
+
+        .hero-btn-secondary {
+            background: rgba(240, 240, 240, 0.1);
+            color: var(--blanc-platine);
+            border: 2px solid rgba(240, 240, 240, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .hero-btn-primary:hover {
+            box-shadow: 0 12px 35px rgba(229, 228, 226, 0.6);
+        }
+
+        .hero-btn-secondary:hover {
+            background: rgba(240, 240, 240, 0.2);
+            border-color: var(--platine);
+        }
+
+        /* STATS HERO */
+        .hero-stats {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 3rem;
+            z-index: 2;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--platine);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        /* SECTIONS PRINCIPALES */
+        .main-content {
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(to bottom, transparent, var(--noir-profond));
+        }
+
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--blanc-platine), var(--platine));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* COMING SOON SECTIONS */
+        .coming-soon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            min-height: 300px;
+        }
+
+        /* NEWS SECTION */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .news-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--platine), var(--blanc-platine));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .news-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .news-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .news-excerpt {
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .news-link {
+            color: var(--platine);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .news-link:hover {
+            transform: translateX(5px);
+        }
+
+        /* MATCHES SECTION */
+        .matches-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .match-card {
+            background: linear-gradient(135deg, 
+                rgba(15, 59, 44, 0.9), 
+                rgba(27, 75, 58, 0.8));
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(229, 228, 226, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .match-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(229, 228, 226, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .match-card:hover::before {
+            opacity: 1;
+        }
+
+        .match-card:hover {
+            transform: scale(1.05);
+            border-color: var(--platine);
+            box-shadow: 0 15px 30px rgba(229, 228, 226, 0.3);
+        }
+
+        .match-date {
+            text-align: center;
+            font-weight: 700;
+            color: var(--platine);
+            margin-bottom: 1rem;
+        }
+
+        .match-teams {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .team {
+            text-align: center;
+            flex: 1;
+        }
+
+        .team-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .vs {
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: var(--platine);
+            margin: 0 1rem;
+        }
+
+        .match-info {
+            text-align: center;
+            opacity: 0.8;
+            margin-top: 1rem;
+        }
+
+        /* FOOTER PREMIUM */
+        .footer {
+            background: linear-gradient(135deg, var(--noir-profond), var(--vert-forge));
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(229, 228, 226, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--platine);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--blanc-platine);
+            text-decoration: none;
+            opacity: 0.8;
+            line-height: 1.8;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+            color: var(--platine);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--platine);
+            color: var(--noir-profond);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.6;
+        }
+
+        /* ANIMATIONS */
+        @keyframes slideInTop {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 0 1rem;
+            }
+
+            .hero-content {
+                padding: 0 1rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.5rem;
+                line-height: 1.2;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+                line-height: 1.5;
+                margin-bottom: 2rem;
+            }
+
+            .hero-stats {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                transform: none;
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 2rem;
+                padding: 0 1rem;
+            }
+
+            .stat-item {
+                padding: 0.8rem;
+                min-width: 120px;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .hero-btn {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            .news-grid,
+            .matches-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .coming-soon {
+                padding: 2rem 1rem;
+                min-height: 200px;
+            }
+
+            .footer {
+                padding: 2rem 1rem 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                min-height: 90vh;
+                padding: 0;
+            }
+
+            .hero-content {
+                padding: 0 0.5rem;
+            }
+
+            .hero-logo .logo-text {
+                font-size: 2.5rem;
+            }
+
+            .hero-logo .logo-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .hero-description {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-actions {
+                margin-bottom: 1rem;
+            }
+
+            .hero-btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-stats {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+
+            .stat-item {
+                flex: 1;
+                min-width: 100px;
+                padding: 0.6rem;
+            }
+
+            .stat-number {
+                font-size: 1.2rem;
+            }
+
+            .stat-label {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* SCROLL REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- PARTICULES BACKGROUND -->
+    <div class="particles-bg" id="particles"></div>
+
+    <!-- HEADER PREMIUM -->
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <div class="logo-placeholder">
+                <span class="logo-text">LA FORGE</span>
+                <span class="logo-subtitle">BASKETBALL</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION SPECTACULAIRE -->
+    <section class="hero" id="accueil">
+        <div class="hero-bg"></div>
+        
+        <div class="hero-content">
+            <div class="hero-logo logo-placeholder">
+                <span class="logo-text">LA FORGE</span>
+                <span class="logo-subtitle">BASKETBALL</span>
+            </div>
+            
+            <h1 class="hero-tagline">Excellence • Passion • Performance</h1>
+            <p class="hero-description">
+                L'équipe semi-professionnelle de Montréal qui forge les champions de demain. 
+                Rejoignez-nous dans notre quête vers l'excellence sportive.
+            </p>
+            
+            <div class="hero-actions">
+                <a href="#actualites" class="hero-btn hero-btn-primary">Découvrir l'Équipe</a>
+                <a href="#calendrier" class="hero-btn hero-btn-secondary">Prochains Matchs</a>
+            </div>
+        </div>
+
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-number">15</div>
+                <div class="stat-label">Joueurs Elite</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">PrepU</div>
+                <div class="stat-label">Ligue Canada</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2025</div>
+                <div class="stat-label">Nouvelle Saison</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- ACTUALITÉS -->
+        <section class="section reveal" id="actualites">
+            <div class="section-header">
+                <h2 class="section-title">Dernières Actualités</h2>
+                <p class="section-subtitle">
+                    Restez informés des dernières nouvelles, performances et événements de La Forge Basketball
+                </p>
+            </div>
+
+            <div class="news-grid">
+                <div class="coming-soon">
+                    <i class="fas fa-newspaper" style="font-size: 3rem; opacity: 0.3; margin-bottom: 1rem;"></i>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; opacity: 0.8;">Actualités à venir</h3>
+                    <p style="opacity: 0.6; text-align: center;">Les dernières nouvelles de La Forge Basketball seront bientôt disponibles ici.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCHAINS MATCHS -->
+        <section class="section reveal" id="calendrier">
+            <div class="section-header">
+                <h2 class="section-title">Prochains Matchs</h2>
+                <p class="section-subtitle">
+                    Ne manquez aucun match de vos champions ! Venez encourager La Forge Basketball.
+                </p>
+            </div>
+
+            <div class="matches-container">
+                <div class="coming-soon">
+                    <i class="fas fa-basketball-ball" style="font-size: 3rem; opacity: 0.3; margin-bottom: 1rem;"></i>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; opacity: 0.8;">Calendrier à venir</h3>
+                    <p style="opacity: 0.6; text-align: center;">Le calendrier des prochains matchs de La Forge Basketball sera bientôt disponible.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER PREMIUM -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="logo-placeholder footer-logo">
+                    <span class="logo-text">LA FORGE</span>
+                    <span class="logo-subtitle">BASKETBALL</span>
+                </div>
+                <p style="margin-top: 1rem;">
+                    Excellence semi-professionnelle basée à Montréal. 
+                    Nous forgeons les champions de demain avec passion et détermination.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Navigation</h3>
+                <p><a href="#accueil">Accueil</a></p>
+                <p><a href="#equipe">Équipe</a></p>
+                <p><a href="#calendrier">Calendrier</a></p>
+                <p><a href="#actualites">Actualités</a></p>
+                <p><a href="#statistiques">Statistiques</a></p>
+                <p><a href="#galerie">Galerie</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><i class="fas fa-envelope"></i> laforgebasketball@gmail.com</p>
+                <p><i class="fas fa-phone"></i> (514) 999-2550</p>
+                <p><i class="fas fa-map-marker-alt"></i> Montréal, Quebec, Canada</p>
+                <p><strong>Coach Principal:</strong> Ahmed Salia Touré</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Ligue & Organisation</h3>
+                <p><a href="#">PrepU Canada</a></p>
+                <p><a href="#">Basketball Québec</a></p>
+                <p><a href="#">Collège de Saint-Lambert</a></p>
+                <p><a href="#">Développement Jeunesse</a></p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 La Forge Basketball. Tous droits réservés. | Conçu avec passion à Montréal</p>
+        </div>
+    </footer>
+
+    <script>
+        // HEADER SCROLL EFFECT
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // PARTICULES GÉNÉRATIVES
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 4 + 1;
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 4 + 4;
+                const delay = Math.random() * 2;
+
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${left}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDuration = `${animationDuration}s`;
+                particle.style.animationDelay = `${delay}s`;
+
+                container.appendChild(particle);
+            }
+        }
+
+        // SCROLL REVEAL ANIMATION
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('revealed');
+                }
+            });
+        }
+
+        // SMOOTH SCROLLING
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // STATS COUNTER ANIMATION
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const finalValue = target.textContent;
+                        
+                        if (!isNaN(finalValue)) {
+                            let currentValue = 0;
+                            const increment = finalValue / 30;
+                            const timer = setInterval(() => {
+                                currentValue += increment;
+                                if (currentValue >= finalValue) {
+                                    currentValue = finalValue;
+                                    clearInterval(timer);
+                                }
+                                target.textContent = Math.floor(currentValue);
+                            }, 50);
+                        }
+                        observer.unobserve(target);
+                    }
+                });
+            });
+
+            stats.forEach(stat => observer.observe(stat));
+        }
+
+        // CARDS HOVER EFFECT ENHANCED
+        document.querySelectorAll('.news-card, .match-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+            });
+        });
+
+        // INITIALISATION
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            animateStats();
+            revealOnScroll();
+        });
+
+        window.addEventListener('scroll', revealOnScroll);
+
+        // PERFORMANCE OPTIMIZATION
+        let ticking = false;
+        function updateOnScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    revealOnScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', updateOnScroll, { passive: true });
+    </script>
+</body>
+</html>
