@@ -7,11 +7,13 @@ Site web moderne et professionnel pour l'équipe de basketball La Forge, basée 
 ## ✨ Fonctionnalités
 
 - **Page d'accueil** avec hero animé et sections dynamiques
-- **Page Équipe** pour afficher tous les joueurs avec filtres
+- **Page Équipe** pour afficher tous les joueurs ET le staff technique
+- **Page Histoire** avec timeline interactive des moments clés
 - **Calendrier** des matchs et entraînements
 - **Actualités** avec système de blog
 - **Galerie** photos et vidéos
 - **Page Contact** avec formulaire
+- **Logos SVG** (4 variantes disponibles, changeables via admin)
 - **Admin Sanity CMS** pour gérer tout le contenu facilement
 
 ## 🚀 Technologies Utilisées
@@ -127,6 +129,48 @@ Le site utilise la palette de couleurs officielle de La Forge Basketball :
    - Liens vidéos (optionnel)
 4. **"Publish"**
 
+### Gérer le Staff
+
+1. Cliquez sur **"Staff"**
+2. **"Create"** → Nouveau membre du staff
+3. Informations :
+   - Nom complet
+   - Photo
+   - Rôle (Entraîneur-chef, Adjoint, Préparateur physique, etc.)
+   - Biographie
+   - Années d'expérience
+   - Spécialités
+   - Contact (email, téléphone, LinkedIn)
+   - Réalisations
+4. **"Publish"**
+
+### Gérer l'Histoire
+
+1. Cliquez sur **"Notre Histoire"**
+2. **"Create"** → Nouveau moment clé
+3. Ajoutez :
+   - Titre
+   - Année
+   - Image principale
+   - Extrait (résumé court)
+   - Contenu détaillé
+   - Catégorie (Fondation, Victoire, Expansion, etc.)
+   - Ordre d'affichage
+4. **"Publish"**
+
+### Paramètres du Site (Logo et Configurations)
+
+1. Cliquez sur **"Paramètres du Site"**
+2. Vous pouvez modifier :
+   - **Logo** : Choisir entre 4 variantes (2 logos principaux + 2 lettermarks)
+   - Titre du site
+   - Description
+   - Favicon
+   - Liens réseaux sociaux (Instagram, Facebook, Twitter, YouTube)
+   - Informations de contact
+   - Texte du hero (slogan, description)
+3. **"Publish"** pour appliquer les changements
+
 ## 🛠️ Commandes Disponibles
 
 ```bash
@@ -149,7 +193,8 @@ npm run lint
 laforge-website/
 ├── app/                      # Pages Next.js
 │   ├── page.tsx             # Page d'accueil
-│   ├── equipe/              # Page équipe
+│   ├── equipe/              # Page équipe (joueurs + staff)
+│   ├── histoire/            # Page Notre Histoire
 │   ├── calendrier/          # Page calendrier
 │   ├── actualites/          # Page actualités
 │   ├── galerie/             # Page galerie
@@ -158,7 +203,8 @@ laforge-website/
 ├── components/
 │   ├── common/              # Composants réutilisables
 │   │   ├── Header.tsx
-│   │   └── Footer.tsx
+│   │   ├── Footer.tsx
+│   │   └── Logo.tsx        # Composant Logo dynamique
 │   └── sections/            # Sections de page
 │       ├── Hero.tsx
 │       ├── TeamStats.tsx
@@ -168,13 +214,20 @@ laforge-website/
 ├── sanity/
 │   ├── schemas/             # Schémas de données
 │   │   ├── player.ts
+│   │   ├── staff.ts        # Nouveau: Staff technique
 │   │   ├── article.ts
 │   │   ├── match.ts
 │   │   ├── training.ts
-│   │   └── gallery.ts
+│   │   ├── gallery.ts
+│   │   ├── history.ts      # Nouveau: Notre Histoire
+│   │   └── siteSettings.ts # Nouveau: Paramètres du site
 │   └── lib/                 # Utilitaires Sanity
 ├── types/                   # Types TypeScript
 └── public/                  # Fichiers statiques
+    ├── logo-primary-1.svg  # Logo principal version 1
+    ├── logo-primary-2.svg  # Logo principal version 2
+    ├── lettermark-1.svg    # LetterMark version 1
+    └── lettermark-2.svg    # LetterMark version 2
 ```
 
 ## 🎯 Prochaines Étapes
