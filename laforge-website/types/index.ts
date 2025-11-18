@@ -118,10 +118,30 @@ export interface Match {
   mvp?: {
     _ref: string
     _type: 'reference'
+  } | {
+    _id: string
+    name: string
+    jerseyNumber: number
+    image?: any
+    stats?: {
+      ppg?: number
+      rpg?: number
+      apg?: number
+    }
   }
   xFactor?: {
     _ref: string
     _type: 'reference'
+  } | {
+    _id: string
+    name: string
+    jerseyNumber: number
+    image?: any
+    stats?: {
+      ppg?: number
+      rpg?: number
+      apg?: number
+    }
   }
   teamStats?: {
     fgPercentage?: number
@@ -138,6 +158,10 @@ export interface Match {
     player: {
       _ref: string
       _type: 'reference'
+    } | {
+      _id: string
+      name: string
+      jerseyNumber: number
     }
     points?: number
     rebounds?: number

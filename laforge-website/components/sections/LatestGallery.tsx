@@ -4,43 +4,36 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { FaArrowRight, FaImages } from 'react-icons/fa'
+import { urlForImage } from '@/sanity/lib/image'
+import type { Gallery } from '@/types'
 
-// Mock data - sera remplacé par des vraies données de Sanity
-const mockGalleryItems = [
-  {
-    id: '1',
-    title: 'Match contre les Titans',
-    date: '2025-03-15',
-    category: 'Match',
-    imageCount: 24,
-  },
-  {
-    id: '2',
-    title: 'Entraînement intensif',
-    date: '2025-03-12',
-    category: 'Entraînement',
-    imageCount: 18,
-  },
-  {
-    id: '3',
-    title: 'Portrait d\'équipe 2025',
-    date: '2025-03-10',
-    category: 'Équipe',
-    imageCount: 32,
-  },
-  {
-    id: '4',
-    title: 'Finale régionale',
-    date: '2025-03-08',
-    category: 'Match',
-    imageCount: 45,
-  },
-]
+interface LatestGalleryProps {
+  galleries: Gallery[]
+}
 
-export default function LatestGallery() {
+export default function LatestGallery({ galleries }: LatestGalleryProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
+
+  // Si pas de galeries, ne rien afficher
+  if (!galleries || galleries.length === 0) {
+    return null
+  }
+
+  // Fonction pour obtenir le nom de la catégorie en français
+  const getCategoryName = (category: string) => {
+    const categories: Record<string, string> = {
+      match: 'Match',
+      training: 'Entraînement',
+      event: 'Événement',
+      team: 'Équipe',
+      other: 'Autre',
+    }
+
+    return categories[category] || category
+  }
 
   return (
     <section ref={ref} className="py-20 bg-[var(--noir-profond)]">
@@ -69,49 +62,70 @@ export default function LatestGallery() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {mockGalleryItems.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group cursor-pointer"
-            >
-              <Link href={`/galerie/${item.id}`}>
-                <div className="relative overflow-hidden rounded-2xl bg-[var(--noir-profond)] border border-[var(--vert-forge)]/30 hover:border-[var(--vert-forge)] transition-all duration-300">
-                  {/* Image Placeholder */}
-                  <div className="relative h-64 bg-gradient-to-br from-[var(--vert-forge)] to-[var(--vert-foret)] overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <FaImages className="text-[var(--platine)]/20 text-6xl" />
-                    </div>
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-300" />
+          {galleries.map((item, index) => {
+            const imageCount = (item.images?.length || 0) + (item.videos?.length || 0)
 
-                    {/* Image Count Badge */}
-                    <div className="absolute top-4 right-4 px-3 py-1 bg-black/60 backdrop-blur-sm rounded-full text-[var(--platine)] text-sm font-semibold flex items-center space-x-2">
-                      <FaImages className="w-3 h-3" />
-                      <span>{item.imageCount}</span>
+            return (
+              <motion.div
+                key={item._id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+                className="group cursor-pointer"
+              >
+                <Link href={`/galerie/${item.slug.current}`}>
+                  <div className="relative overflow-hidden rounded-2xl bg-[var(--noir-profond)] border border-[var(--vert-forge)]/30 hover:border-[var(--vert-forge)] transition-all duration-300">
+                    {/* Cover Image */}
+                    <div className="relative h-64 bg-gradient-to-br from-[var(--vert-forge)] to-[var(--vert-foret)] overflow-hidden">
+                      {item.coverImage && item.coverImage.asset && urlForImage(item.coverImage) ? (
+                        <>
+                          <Image
+                            src={urlForImage(item.coverImage)!.width(400).height(300).url()}
+                            alt={item.title}
+                            width={400}
+                            height={300}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-300" />
+                        </>
+                      ) : (
+                        <>
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <FaImages className="text-[var(--platine)]/20 text-6xl" />
+                          </div>
+                          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-300" />
+                        </>
+                      )}
+
+                      {/* Image Count Badge */}
+                      {imageCount > 0 && (
+                        <div className="absolute top-4 right-4 px-3 py-1 bg-black/60 backdrop-blur-sm rounded-full text-[var(--platine)] text-sm font-semibold flex items-center space-x-2">
+                          <FaImages className="w-3 h-3" />
+                          <span>{imageCount}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-4 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="px-3 py-1 bg-[var(--vert-forge)]/20 text-[var(--platine)] rounded-full border border-[var(--vert-forge)]/30 text-xs">
+                          {getCategoryName(item.category)}
+                        </span>
+                        <span className="text-[var(--blanc-platine)]/60 text-xs">
+                          {new Date(item.date).toLocaleDateString('fr-CA')}
+                        </span>
+                      </div>
+
+                      <h3 className="text-lg font-bold text-[var(--platine)] group-hover:text-[var(--blanc-platine)] transition-colors duration-300">
+                        {item.title}
+                      </h3>
                     </div>
                   </div>
-
-                  {/* Content */}
-                  <div className="p-4 space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="px-3 py-1 bg-[var(--vert-forge)]/20 text-[var(--platine)] rounded-full border border-[var(--vert-forge)]/30 text-xs">
-                        {item.category}
-                      </span>
-                      <span className="text-[var(--blanc-platine)]/60 text-xs">
-                        {new Date(item.date).toLocaleDateString('fr-CA')}
-                      </span>
-                    </div>
-
-                    <h3 className="text-lg font-bold text-[var(--platine)] group-hover:text-[var(--blanc-platine)] transition-colors duration-300">
-                      {item.title}
-                    </h3>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+                </Link>
+              </motion.div>
+            )
+          })}
         </div>
 
         {/* Mobile View All Link */}

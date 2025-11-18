@@ -5,34 +5,20 @@ import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import Link from 'next/link'
 import { FaTrophy, FaBolt, FaArrowRight } from 'react-icons/fa'
+import type { Match } from '@/types'
 
-// Mock data - sera remplacé par des vraies données de Sanity
-const mockResults = [
-  {
-    id: '1',
-    opponent: 'Montreal Phoenix',
-    ourScore: 98,
-    opponentScore: 72,
-    date: '2025-03-15',
-    location: 'Pavillon Durocher',
-    mvp: { name: 'Marcus Johnson', jerseyNumber: 23, points: 28, rebounds: 12, assists: 5 },
-    xFactor: { name: 'Alex Dubois', jerseyNumber: 7, points: 18, rebounds: 4, assists: 8 },
-  },
-  {
-    id: '2',
-    opponent: 'Quebec Warriors',
-    ourScore: 85,
-    opponentScore: 90,
-    date: '2025-03-12',
-    location: 'Centre Bell',
-    mvp: { name: 'Jordan Lee', jerseyNumber: 11, points: 24, rebounds: 8, assists: 6 },
-    xFactor: { name: 'Samuel Roy', jerseyNumber: 15, points: 15, rebounds: 10, assists: 3 },
-  },
-]
+interface RecentResultsProps {
+  matches: Match[]
+}
 
-export default function RecentResults() {
+export default function RecentResults({ matches }: RecentResultsProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
+
+  // Si pas de matchs, ne rien afficher
+  if (!matches || matches.length === 0) {
+    return null
+  }
 
   return (
     <section ref={ref} className="py-20 bg-gradient-to-b from-[var(--noir-profond)] to-black">
@@ -61,12 +47,12 @@ export default function RecentResults() {
         </motion.div>
 
         <div className="space-y-6">
-          {mockResults.map((match, index) => {
-            const isWin = match.ourScore > match.opponentScore
+          {matches.map((match, index) => {
+            const isWin = (match.ourScore ?? 0) > (match.opponentScore ?? 0)
 
             return (
               <motion.div
-                key={match.id}
+                key={match._id}
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -114,46 +100,54 @@ export default function RecentResults() {
                     </div>
 
                     {/* MVP */}
-                    <div className="lg:col-span-4 border-l-0 lg:border-l border-[var(--vert-forge)]/30 lg:pl-6">
-                      <div className="flex items-center space-x-2 mb-3">
-                        <FaTrophy className="w-4 h-4 text-yellow-400" />
-                        <span className="text-yellow-400 text-sm font-semibold">MVP</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <div className="w-12 h-12 bg-gradient-to-br from-[var(--vert-forge)] to-[var(--vert-foret)] rounded-lg flex items-center justify-center">
-                          <span className="text-[var(--platine)] font-bold">
-                            #{match.mvp.jerseyNumber}
-                          </span>
+                    {match.mvp && 'name' in match.mvp && (
+                      <div className="lg:col-span-4 border-l-0 lg:border-l border-[var(--vert-forge)]/30 lg:pl-6">
+                        <div className="flex items-center space-x-2 mb-3">
+                          <FaTrophy className="w-4 h-4 text-yellow-400" />
+                          <span className="text-yellow-400 text-sm font-semibold">MVP</span>
                         </div>
-                        <div>
-                          <div className="text-[var(--platine)] font-bold">{match.mvp.name}</div>
-                          <div className="text-[var(--blanc-platine)]/60 text-sm">
-                            {match.mvp.points} PTS • {match.mvp.rebounds} REB • {match.mvp.assists} AST
+                        <div className="flex items-center space-x-3">
+                          <div className="w-12 h-12 bg-gradient-to-br from-[var(--vert-forge)] to-[var(--vert-foret)] rounded-lg flex items-center justify-center">
+                            <span className="text-[var(--platine)] font-bold">
+                              #{match.mvp.jerseyNumber}
+                            </span>
+                          </div>
+                          <div>
+                            <div className="text-[var(--platine)] font-bold">{match.mvp.name}</div>
+                            {match.mvp.stats && (
+                              <div className="text-[var(--blanc-platine)]/60 text-sm">
+                                {match.mvp.stats.ppg} PTS • {match.mvp.stats.rpg} REB • {match.mvp.stats.apg} AST
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
-                    </div>
+                    )}
 
                     {/* X-Factor */}
-                    <div className="lg:col-span-4 border-l-0 lg:border-l border-[var(--vert-forge)]/30 lg:pl-6">
-                      <div className="flex items-center space-x-2 mb-3">
-                        <FaBolt className="w-4 h-4 text-purple-400" />
-                        <span className="text-purple-400 text-sm font-semibold">X-FACTOR</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <div className="w-12 h-12 bg-gradient-to-br from-[var(--vert-forge)] to-[var(--vert-foret)] rounded-lg flex items-center justify-center">
-                          <span className="text-[var(--platine)] font-bold">
-                            #{match.xFactor.jerseyNumber}
-                          </span>
+                    {match.xFactor && 'name' in match.xFactor && (
+                      <div className="lg:col-span-4 border-l-0 lg:border-l border-[var(--vert-forge)]/30 lg:pl-6">
+                        <div className="flex items-center space-x-2 mb-3">
+                          <FaBolt className="w-4 h-4 text-purple-400" />
+                          <span className="text-purple-400 text-sm font-semibold">X-FACTOR</span>
                         </div>
-                        <div>
-                          <div className="text-[var(--platine)] font-bold">{match.xFactor.name}</div>
-                          <div className="text-[var(--blanc-platine)]/60 text-sm">
-                            {match.xFactor.points} PTS • {match.xFactor.rebounds} REB • {match.xFactor.assists} AST
+                        <div className="flex items-center space-x-3">
+                          <div className="w-12 h-12 bg-gradient-to-br from-[var(--vert-forge)] to-[var(--vert-foret)] rounded-lg flex items-center justify-center">
+                            <span className="text-[var(--platine)] font-bold">
+                              #{match.xFactor.jerseyNumber}
+                            </span>
+                          </div>
+                          <div>
+                            <div className="text-[var(--platine)] font-bold">{match.xFactor.name}</div>
+                            {match.xFactor.stats && (
+                              <div className="text-[var(--blanc-platine)]/60 text-sm">
+                                {match.xFactor.stats.ppg} PTS • {match.xFactor.stats.rpg} REB • {match.xFactor.stats.apg} AST
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </motion.div>
