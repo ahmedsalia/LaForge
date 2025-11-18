@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* LaForge Basketball Brand Colors */
+  --vert-forge: #0F3B2C;
+  --platine: #E5E4E2;
+  --vert-foret: #1B4B3A;
+  --blanc-platine: #F0F0F0;
+  --noir-profond: #0D0D0D;
+
+  --background: var(--noir-profond);
+  --foreground: var(--blanc-platine);
+}
+
+@theme inline {
+  /* LaForge Custom Colors */
+  --color-forge-green: #0F3B2C;
+  --color-platine: #E5E4E2;
+  --color-forest-green: #1B4B3A;
+  --color-platine-white: #F0F0F0;
+  --color-deep-black: #0D0D0D;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Courier New', monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--noir-profond);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vert-forge);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vert-foret);
+}
