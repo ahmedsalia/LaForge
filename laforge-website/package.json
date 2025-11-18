@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "import": "tsx scripts/import-data.ts"
+    "import": "tsx scripts/import-data.ts",
+    "check-assets": "tsx scripts/check-assets.ts"
   },
   "dependencies": {
     "@portabletext/react": "^5.0.0",
