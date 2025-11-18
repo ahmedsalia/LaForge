@@ -1,0 +1,64 @@
+{
+  "staff": [
+    {
+      "name": "Ahmed Salia Touré",
+      "role": "head_coach",
+      "bio": "Entraîneur-chef passionné avec plus de 15 ans d'expérience dans le développement des jeunes talents. Ancien joueur professionnel ayant évolué en Europe.",
+      "experience": 15,
+      "specialties": [
+        "Développement offensif",
+        "Stratégies de jeu",
+        "Formation de joueurs d'élite"
+      ],
+      "email": "ahmed.toure@laforgebasketball.com",
+      "phone": "+1 514-555-0100",
+      "linkedin": "ahmed-salia-toure",
+      "achievements": [
+        "Champion provincial 2022",
+        "Coach de l'année PrepU 2023",
+        "15+ joueurs envoyés en NCAA"
+      ]
+    },
+    {
+      "name": "Jean Tremblay",
+      "role": "assistant_coach",
+      "bio": "Entraîneur adjoint spécialisé dans la défense et le conditionnement physique.",
+      "experience": 8,
+      "specialties": [
+        "Défense de zone",
+        "Conditionnement",
+        "Analyse vidéo"
+      ],
+      "email": "jean.tremblay@laforgebasketball.com",
+      "phone": "+1 514-555-0101"
+    },
+    {
+      "name": "Marie Dubois",
+      "role": "physical_trainer",
+      "bio": "Préparatrice physique certifiée, spécialisée dans la prévention des blessures et l'optimisation des performances athlétiques.",
+      "experience": 6,
+      "specialties": [
+        "Prévention des blessures",
+        "Force et conditionnement",
+        "Nutrition sportive"
+      ],
+      "email": "marie.dubois@laforgebasketball.com",
+      "achievements": [
+        "Certifiée NSCA-CSCS",
+        "Kinésiologue agréée"
+      ]
+    },
+    {
+      "name": "Pierre Gagnon",
+      "role": "video_analyst",
+      "bio": "Analyste vidéo expert dans l'analyse des adversaires et l'amélioration des stratégies de jeu.",
+      "experience": 4,
+      "specialties": [
+        "Analyse d'adversaires",
+        "Statistiques avancées",
+        "Préparation de matchs"
+      ],
+      "email": "pierre.gagnon@laforgebasketball.com"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "players": [
+    {
+      "name": "Marcus Johnson",
+      "jerseyNumber": 23,
+      "position": "guard",
+      "height": "6'2\"",
+      "weight": 185,
+      "age": 18,
+      "bio": "Guard dynamique avec une excellente vision du jeu.",
+      "stats": {
+        "ppg": 22.5,
+        "rpg": 4.2,
+        "apg": 6.8
+      },
+      "isActive": true
+    }
+  ],
+  "staff": [
+    {
+      "name": "Ahmed Salia Touré",
+      "role": "head_coach",
+      "bio": "Entraîneur-chef avec 15 ans d'expérience.",
+      "experience": 15
+    }
+  ],
+  "matches": [
+    {
+      "opponent": "Montreal Phoenix",
+      "date": "2025-03-22T19:00:00",
+      "location": "Pavillon Durocher",
+      "isHome": true,
+      "status": "upcoming"
+    }
+  ],
+  "articles": [
+    {
+      "title": "La Forge remporte une victoire éclatante",
+      "excerpt": "Notre équipe a dominé le match avec un score impressionnant.",
+      "category": "match",
+      "publishedAt": "2025-03-16T10:00:00",
+      "content": "La Forge Basketball a livré une performance exceptionnelle lors du dernier match...",
+      "author": "La Forge Basketball",
+      "featured": true
+    }
+  ],
+  "galleries": [
+    {
+      "title": "Match contre Montreal Phoenix",
+      "description": "Photos du match épique contre Montreal Phoenix",
+      "date": "2025-03-15T19:00:00",
+      "category": "match"
+    }
+  ],
+  "history": [
+    {
+      "title": "Fondation de La Forge Basketball",
+      "year": 2020,
+      "excerpt": "Création de l'équipe avec une vision claire d'excellence.",
+      "content": "La Forge Basketball a été fondée en 2020 avec pour mission de développer les meilleurs talents du Québec...",
+      "category": "foundation",
+      "order": 1,
+      "featured": true
+    },
+    {
+      "title": "Premier championnat régional",
+      "year": 2022,
+      "excerpt": "Victoire historique au championnat régional.",
+      "content": "Une performance exceptionnelle qui a établi La Forge comme une force majeure.",
+      "category": "victory",
+      "order": 2,
+      "featured": true
+    }
+  ]
+}

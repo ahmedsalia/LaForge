@@ -1,0 +1,81 @@
+{
+  "players": [
+    {
+      "name": "Marcus Johnson",
+      "jerseyNumber": 23,
+      "position": "guard",
+      "height": "6'2\"",
+      "weight": 185,
+      "birthDate": "2006-03-15",
+      "age": 18,
+      "nationality": "Canada",
+      "canadianResident": true,
+      "schoolLevel": "Cégep 1",
+      "gpa": 3.8,
+      "email": "marcus.johnson@example.com",
+      "phone": "+1 514-555-0123",
+      "instagram": "@marcusj23",
+      "highlightVideo": "https://youtube.com/...",
+      "bio": "Guard dynamique avec une excellente vision du jeu et un tir à trois points redoutable.",
+      "stats": {
+        "ppg": 22.5,
+        "rpg": 4.2,
+        "apg": 6.8,
+        "fgPercentage": 48.5,
+        "threePointPercentage": 42.0,
+        "ftPercentage": 85.5
+      },
+      "isActive": true
+    },
+    {
+      "name": "Alex Dubois",
+      "jerseyNumber": 7,
+      "position": "forward",
+      "height": "6'6\"",
+      "weight": 210,
+      "birthDate": "2005-08-22",
+      "age": 19,
+      "nationality": "Canada",
+      "canadianResident": true,
+      "schoolLevel": "Cégep 2",
+      "gpa": 3.5,
+      "email": "alex.dubois@example.com",
+      "phone": "+1 514-555-0124",
+      "instagram": "@alexd7",
+      "bio": "Ailier polyvalent excellent en défense et au rebond.",
+      "stats": {
+        "ppg": 18.3,
+        "rpg": 8.5,
+        "apg": 3.2,
+        "fgPercentage": 51.2,
+        "threePointPercentage": 35.8,
+        "ftPercentage": 78.0
+      },
+      "isActive": true
+    },
+    {
+      "name": "Jordan Lee",
+      "jerseyNumber": 11,
+      "position": "center",
+      "height": "6'10\"",
+      "weight": 235,
+      "birthDate": "2006-01-10",
+      "age": 18,
+      "nationality": "Canada",
+      "canadianResident": true,
+      "schoolLevel": "Cégep 1",
+      "gpa": 3.2,
+      "email": "jordan.lee@example.com",
+      "bio": "Pivot dominant au rebond et excellent défenseur dans la raquette.",
+      "stats": {
+        "ppg": 15.8,
+        "rpg": 11.2,
+        "apg": 1.5,
+        "fgPercentage": 58.5,
+        "threePointPercentage": 0,
+        "ftPercentage": 68.5
+      },
+      "isActive": true
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "matches": [
+    {
+      "opponent": "Montreal Phoenix",
+      "date": "2025-03-22T19:00:00",
+      "location": "Pavillon Durocher",
+      "isHome": true,
+      "status": "upcoming",
+      "isPlayoff": false,
+      "period": "period2"
+    },
+    {
+      "opponent": "Quebec Warriors",
+      "date": "2025-03-15T20:00:00",
+      "location": "Centre Bell",
+      "isHome": false,
+      "status": "finished",
+      "isPlayoff": false,
+      "period": "period2",
+      "ourScore": 98,
+      "opponentScore": 72,
+      "mvpRef": 23,
+      "xFactorRef": 7,
+      "highlights": "Victoire dominante de La Forge avec une performance exceptionnelle en deuxième mi-temps.",
+      "recap": "La Forge Basketball a livré une performance impressionnante contre les Quebec Warriors, s'imposant 98-72. Marcus Johnson a été le meneur de l'équipe avec 28 points, 5 rebonds et 7 passes décisives, tandis qu'Alex Dubois a apporté une contribution cruciale avec 18 points et 9 rebonds.",
+      "teamStats": {
+        "fgPercentage": 52.3,
+        "threePointPercentage": 41.2,
+        "ftPercentage": 82.5,
+        "totalRebounds": 45,
+        "assists": 24,
+        "steals": 12,
+        "blocks": 6,
+        "turnovers": 11
+      },
+      "autoGenerateArticle": true
+    },
+    {
+      "opponent": "Laval Gladiators",
+      "date": "2025-03-08T18:30:00",
+      "location": "Pavillon Saint-Lambert",
+      "isHome": true,
+      "status": "finished",
+      "isPlayoff": false,
+      "period": "period2",
+      "ourScore": 85,
+      "opponentScore": 90,
+      "mvpRef": 11,
+      "xFactorRef": 7,
+      "highlights": "Match serré jusqu'à la dernière minute. Malgré un excellent effort collectif, La Forge s'incline de justesse.",
+      "recap": "Dans un match très disputé, La Forge Basketball a malheureusement concédé une défaite serrée 85-90 face aux Laval Gladiators. Jordan Lee a dominé sous le panier avec 24 points et 14 rebonds, mais cela n'a pas suffi.",
+      "teamStats": {
+        "fgPercentage": 47.8,
+        "threePointPercentage": 32.5,
+        "ftPercentage": 75.0,
+        "totalRebounds": 42,
+        "assists": 19,
+        "steals": 8,
+        "blocks": 4,
+        "turnovers": 15
+      }
+    }
+  ]
+}
