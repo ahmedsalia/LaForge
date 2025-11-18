@@ -4,39 +4,37 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { FaArrowRight, FaCalendarAlt } from 'react-icons/fa'
+import { urlForImage } from '@/sanity/lib/image'
+import type { Article } from '@/types'
 
-// Mock data - sera remplacé par des vraies données de Sanity
-const mockNews = [
-  {
-    id: '1',
-    title: 'Victoire écrasante contre les Titans',
-    excerpt: 'Notre équipe a dominé les Titans avec un score impressionnant de 98-72. Une performance exceptionnelle de nos joueurs.',
-    category: 'Match',
-    publishedAt: '2025-03-15',
-    image: '/api/placeholder/600/400',
-  },
-  {
-    id: '2',
-    title: 'Nouveau record de saison pour Marcus Johnson',
-    excerpt: 'Marcus Johnson établit un nouveau record avec 45 points en un seul match. Une performance qui restera dans les annales.',
-    category: 'Joueur',
-    publishedAt: '2025-03-12',
-    image: '/api/placeholder/600/400',
-  },
-  {
-    id: '3',
-    title: 'Camp d\'entraînement intensif ce weekend',
-    excerpt: 'Préparez-vous pour un weekend d\'entraînement intensif avec nos coachs experts. Tous les joueurs doivent être présents.',
-    category: 'Entraînement',
-    publishedAt: '2025-03-10',
-    image: '/api/placeholder/600/400',
-  },
-]
+interface FeaturedNewsProps {
+  articles: Article[]
+}
 
-export default function FeaturedNews() {
+export default function FeaturedNews({ articles }: FeaturedNewsProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
+
+  // Si pas d'articles, ne rien afficher
+  if (!articles || articles.length === 0) {
+    return null
+  }
+
+  // Fonction pour obtenir le nom de la catégorie en français
+  const getCategoryName = (category: string) => {
+    const categories: Record<string, string> = {
+      match: 'Match',
+      training: 'Entraînement',
+      team: 'Équipe',
+      player: 'Joueur',
+      event: 'Événement',
+      other: 'Autre',
+    }
+
+    return categories[category] || category
+  }
 
   return (
     <section ref={ref} className="py-20 bg-black">
@@ -65,29 +63,44 @@ export default function FeaturedNews() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {mockNews.map((article, index) => (
+          {articles.map((article, index) => (
             <motion.article
-              key={article.id}
+              key={article._id}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group cursor-pointer"
             >
-              <Link href={`/actualites/${article.id}`}>
+              <Link href={`/actualites/${article.slug.current}`}>
                 <div className="relative overflow-hidden rounded-2xl bg-[var(--noir-profond)] border border-[var(--vert-forge)]/30 hover:border-[var(--vert-forge)] transition-all duration-300">
-                  {/* Image Placeholder */}
+                  {/* Image */}
                   <div className="relative h-64 bg-gradient-to-br from-[var(--vert-forge)] to-[var(--vert-foret)] overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-[var(--platine)]/20 text-6xl font-bold">LF</div>
-                    </div>
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-300" />
+                    {article.mainImage && article.mainImage.asset && urlForImage(article.mainImage) ? (
+                      <>
+                        <Image
+                          src={urlForImage(article.mainImage)!.width(600).height(400).url()}
+                          alt={article.title}
+                          width={600}
+                          height={400}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-300" />
+                      </>
+                    ) : (
+                      <>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="text-[var(--platine)]/20 text-6xl font-bold">LF</div>
+                        </div>
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-300" />
+                      </>
+                    )}
                   </div>
 
                   {/* Content */}
                   <div className="p-6 space-y-4">
                     <div className="flex items-center space-x-4 text-sm">
                       <span className="px-3 py-1 bg-[var(--vert-forge)]/20 text-[var(--platine)] rounded-full border border-[var(--vert-forge)]/30">
-                        {article.category}
+                        {getCategoryName(article.category)}
                       </span>
                       <div className="flex items-center space-x-2 text-[var(--blanc-platine)]/60">
                         <FaCalendarAlt className="w-3 h-3" />

@@ -5,36 +5,13 @@ import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import Link from 'next/link'
 import { FaMapMarkerAlt, FaCalendarAlt, FaClock, FaArrowRight } from 'react-icons/fa'
+import type { Match } from '@/types'
 
-// Mock data - sera remplacé par des vraies données de Sanity
-const mockMatches = [
-  {
-    id: '1',
-    opponent: 'Montreal Phoenix',
-    date: '2025-03-22T19:00:00',
-    location: 'Pavillon Durocher',
-    isHome: true,
-    status: 'upcoming',
-  },
-  {
-    id: '2',
-    opponent: 'Quebec Warriors',
-    date: '2025-03-25T20:00:00',
-    location: 'Centre Bell',
-    isHome: false,
-    status: 'upcoming',
-  },
-  {
-    id: '3',
-    opponent: 'Laval Gladiators',
-    date: '2025-03-28T18:30:00',
-    location: 'Pavillon Saint-Lambert',
-    isHome: true,
-    status: 'upcoming',
-  },
-]
+interface UpcomingMatchesProps {
+  matches: Match[]
+}
 
-export default function UpcomingMatches() {
+export default function UpcomingMatches({ matches }: UpcomingMatchesProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
@@ -54,6 +31,11 @@ export default function UpcomingMatches() {
       hour: '2-digit',
       minute: '2-digit'
     })
+  }
+
+  // Si pas de matchs, ne rien afficher
+  if (!matches || matches.length === 0) {
+    return null
   }
 
   return (
@@ -83,9 +65,9 @@ export default function UpcomingMatches() {
         </motion.div>
 
         <div className="space-y-6">
-          {mockMatches.map((match, index) => (
+          {matches.map((match, index) => (
             <motion.div
-              key={match.id}
+              key={match._id}
               initial={{ opacity: 0, x: -30 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
