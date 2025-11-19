@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { FaArrowRight } from 'react-icons/fa'
 import Link from 'next/link'
+import Logo from '../common/Logo'
 
 export default function Hero() {
   return (
@@ -48,7 +49,7 @@ export default function Hero() {
             className="flex justify-center"
           >
             <div className="w-32 h-32 bg-gradient-to-br from-[var(--vert-forge)] to-[var(--vert-foret)] rounded-2xl flex items-center justify-center shadow-2xl">
-              <span className="text-[var(--platine)] font-bold text-5xl">LF</span>
+               <Logo variant="primary" version="2" width={500} height={500} />
             </div>
           </motion.div>
 

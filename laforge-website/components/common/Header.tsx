@@ -17,7 +17,7 @@ const navigation = [
 ]
 
 const socialLinks = [
-  { icon: FaInstagram, href: 'https://www.instagram.com/laforgebasketball/', label: 'Instagram' },
+  { icon: FaInstagram, href: 'https://www.instagram.com/laforge.basketball/', label: 'Instagram' },
   { icon: FaFacebookF, href: 'https://www.facebook.com/LaForgeBasketball', label: 'Facebook' },
   { icon: FaTwitter, href: 'https://twitter.com/LaForgeBasket', label: 'Twitter' },
   { icon: FaYoutube, href: 'https://www.youtube.com/@LaForgeBasketball', label: 'YouTube' },
@@ -49,7 +49,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center group">
             <div className="group-hover:scale-105 transition-transform duration-300">
-              <Logo variant="lettermark" version="2" width={50} height={50} />
+              <Logo variant="primary" version="2" width={50} height={50} />
             </div>
           </Link>
 

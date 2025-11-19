@@ -10,13 +10,13 @@ interface LogoProps {
 
 export default function Logo({
   variant = 'primary',
-  version = '2',
+  version = '1',
   width = 120,
   height = 120,
   className = '',
 }: LogoProps) {
   const logoFile = variant === 'primary'
-    ? `logo-primary-${version}.svg`
+    ? `logo-primary-${version}.png`
     : `lettermark-${version}.svg`
 
   return (

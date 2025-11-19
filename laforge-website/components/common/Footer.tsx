@@ -33,7 +33,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center">
-              <Logo variant="lettermark" version="2" width={60} height={60} />
+              <Logo variant="primary" version="2" width={60} height={60} />
             </div>
             <p className="text-[var(--blanc-platine)]/60 text-sm">
               Excellence • Passion • Performance
