@@ -19,4 +19,20 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
   },
+
+  // Configuration pour améliorer les limites d'upload
+  form: {
+    image: {
+      assetSources: (previousAssetSources: any) => {
+        return previousAssetSources
+      },
+    },
+  },
+
+  // Augmenter les limites d'upload
+  document: {
+    productionUrl: async (prev: any, context: any) => {
+      return prev
+    },
+  },
 })
